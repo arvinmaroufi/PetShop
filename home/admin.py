@@ -7,7 +7,9 @@ class ContactUsAdmin(admin.ModelAdmin):
     list_display = ['email', 'short_subject', 'created_at']
 
     def short_subject(self, obj):
-        return obj.subject[:20]
-    short_subject.short_description = 'Subject'
+        if len(obj.subject) > 20:
+            return obj.subject[:20] + '...'
+        return obj.subject
+    short_subject.short_description = 'موضوع'
 
 
