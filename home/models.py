@@ -13,3 +13,16 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return f'{self.email} - {self.subject}'
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255, verbose_name='سوال')
+    answer = models.TextField(verbose_name='جواب')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+
+    class Meta:
+        verbose_name = "سوال متداول"
+        verbose_name_plural = "سوالات متداول"
+
+    def __str__(self):
+        return self.question

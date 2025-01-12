@@ -306,6 +306,23 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 3rem !important;
 }
 
+.search-form .form-control {
+    border-radius: 15px !important;
+    border: 1px solid #ced4da !important;
+    padding: 0.75rem 1rem !important;
+}
+
+.search-form .btn-lightorng {
+    border-radius: 15px !important;
+    padding: 0.75rem 1rem !important;
+    background-color: #FFAA00;
+    color: #fff;
+}
+
+.search-form .btn-lightorng:hover {
+    background-color: #e69500;
+}
+
 @keyframes floating2 {
     0% {
         -webkit-transform: rotateX(0deg) translateY(0px);

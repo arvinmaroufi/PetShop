@@ -1,13 +1,29 @@
 from django.shortcuts import render, redirect
 from .forms import ContactUsForm
+from .models import FAQ
+from product.models import Category, Product, Comment
 
 
 def home(request):
-    return render(request, 'home/home.html')
+    categories = Category.objects.all()
+    products = Product.objects.all()[:5]
+    popular_comments = Comment.objects.filter(popular_comment=True)[:4]
+    context = {
+        'categories': categories,
+        'products': products,
+        'popular_comments': popular_comments,
+    }
+    return render(request, 'home/home.html', context)
 
 
 def about_us(request):
-    return render(request, 'home/about_us.html')
+    faq_list = FAQ.objects.all()
+    product_count = Product.objects.count()
+    context = {
+        'faq_list': faq_list,
+        'product_count': product_count,
+    }
+    return render(request, 'home/about_us.html', context)
 
 
 def contact_us(request):
