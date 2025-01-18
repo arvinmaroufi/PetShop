@@ -1,5 +1,5 @@
 ﻿{% extends 'base.html' %}
-{% block title %}محصولات پت هوم{% endblock %}
+{% block title %}{{ product.title }}{% endblock %}
 {% load static %}
 {% load custom_filters %}
 
@@ -33,7 +33,7 @@
                                         {% if similar_product.image %}
                                             <img class="img-fluid" src="{{ similar_product.image.url }}" alt="{{ similar_product.title|truncatechars:13 }}">
                                         {% else %}
-                                            <img class="img-fluid" src="{% static 'main/Img/product_not_found.jpg' %}" alt="{{ similar_product.title|truncatechars:13 }}">
+                                            <img class="img-fluid" src="{% static 'main/Img/image_not_found.jpg' %}" alt="{{ similar_product.title|truncatechars:13 }}">
                                         {% endif %}
                                     </a>
                                     <div>
@@ -77,7 +77,7 @@
                                         <img src="{{ product.image.url }}" class="img-responsive"
                                              alt="{{ product.title|truncatechars:13 }}">
                                     {% else %}
-                                        <img src="{% static 'main/Img/product_not_found.jpg' %}" class="img-responsive"
+                                        <img src="{% static 'main/Img/image_not_found.jpg' %}" class="img-responsive"
                                              alt="{{ product.title|truncatechars:13 }}">
                                     {% endif %}
                                 </div>
@@ -199,7 +199,8 @@
 
                                 <!-- فرم ارسال نظر -->
                                 <div class="form-group comment-page-blog">
-                                    <form method="post">
+                                    {% if request.user.is_authenticated %}
+                                        <form method="post">
                                         {% csrf_token %}
                                         <textarea class="form-control area mb-2" name="body" id="body" cols="60"
                                                   rows="9" placeholder="متن دیدگاه"
@@ -215,6 +216,9 @@
                                             ثبت دیدگاه
                                         </button>
                                     </form>
+                                    {% else %}
+                                        <a class="btn btn-danger" href="#login">برای ارسال نظر ابتدا باید وارد شوید</a>
+                                    {% endif %}
                                 </div>
                                 <div class="comments-list">
                                     {% for comment in product.comments.all %}

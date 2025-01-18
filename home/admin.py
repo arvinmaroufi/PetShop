@@ -34,3 +34,13 @@ class FaqAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
         return datetime2jalali(obj.created_at).strftime('%a, %d %b %Y')
 
 
+@admin.register(models.Gallery)
+class GalleryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
+    list_display = ['gallery_image', 'get_created_jalali']
+
+    @admin.display(description='تاریخ ایجاد', ordering='created_at')
+    def get_created_jalali(self, obj):
+        return datetime2jalali(obj.created_at).strftime('%a, %d %b %Y')
+
+
+

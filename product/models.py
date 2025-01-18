@@ -29,7 +29,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='دسته بندی مربوطه')
-    title = models.CharField(max_length=300, unique=True, verbose_name='نام محصول')
+    title = models.CharField(max_length=300, unique=True, verbose_name='عنوان محصول')
     slug = models.SlugField(max_length=300, unique=True, allow_unicode=True, verbose_name='نامک')
     short_description = models.TextField(verbose_name='توضیحات کوتاه')
     full_description = models.TextField(verbose_name='توضیحات کامل')

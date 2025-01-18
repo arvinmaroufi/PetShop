@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ContactUsForm
-from .models import FAQ
+from .models import FAQ, Gallery
 from product.models import Category, Product, Comment
 
 
@@ -35,3 +35,12 @@ def contact_us(request):
     else:
         form = ContactUsForm()
     return render(request, 'home/contact_us.html', {'form': form})
+
+
+def gallery(request):
+    galleries = Gallery.objects.all()
+    context = {
+        'galleries': galleries
+    }
+    return render(request, 'home/gallery.html', context)
+    

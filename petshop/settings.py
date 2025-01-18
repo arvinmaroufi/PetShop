@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # my apps
     'home',
     'product',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'context_processors.context_processors.product_sidebar',
+                'context_processors.context_processors.blog_sidebar',
             ],
         },
     },

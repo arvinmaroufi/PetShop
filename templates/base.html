@@ -12,6 +12,7 @@
     <link href="{% static 'main/Css/Main.css' %}" rel="stylesheet"/>
     <link href="{% static 'main/Css/Menu.css' %}" rel="stylesheet"/>
     <link href="{% static 'main/Css/Style.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'main/Css/grid-gallery.min.css' %}">
     <link href="{% static 'main/Css/owl.carousel.min.css' %}" rel="stylesheet"/>
     <link href="{% static 'main/Css/owl.theme.min.css' %}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -47,10 +48,10 @@
                             <a href="{% url 'product:product_list' %}">محصولات</a>
                         </li>
                         <li class="current-menu-item">
-                            <a href="gallery.html">گالری</a>
+                            <a href="{% url 'home:gallery' %}">گالری</a>
                         </li>
                         <li class="current-menu-item">
-                            <a href="blog.html">وبلاگ</a>
+                            <a href="{% url 'blog:article_list' %}">وبلاگ</a>
                         </li>
                         <li class="current-menu-item">
                             <a href="{% url 'home:about_us' %}">درباره ما</a>
@@ -79,9 +80,9 @@
 
                                 <li><a href="{% url 'product:product_list' %}">محصولات</a></li>
 
-                                <li><a href="gallery.html">گالری</a></li>
+                                <li><a href="{% url 'home:gallery' %}">گالری</a></li>
 
-                                <li><a href="blog.html">وبلاگ</a></li>
+                                <li><a href="{% url 'blog:article_list' %}">وبلاگ</a></li>
 
                                 <li><a href="{% url 'home:about_us' %}">درباره ما</a></li>
                                 <li><a href="{% url 'home:contact_us' %}">تماس با ما</a></li>
@@ -338,6 +339,7 @@
     <script src="{% static 'main/Js/my-script.js' %}"></script>
     <script src="{% static 'main/Js/owl.carousel.js' %}"></script>
     <script src="{% static 'main/Js/custom.js' %}"></script>
+    <script src="{% static 'main/Js/grid-gallery.min.js' %}"></script>
 
 </body>
 

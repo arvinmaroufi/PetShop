@@ -993,13 +993,26 @@ color:#FFAA00 !important
     border-top: 1px solid #C3C3C2;
 }
 
-.thumb-post img {
-    width: 60px;
-    height: 60px;
-    border-radius: 14px;
-    box-shadow: 0 0 10px -3px rgba(0,0,0,.1);
-    padding: 2px;
+.thumb-post .d-flex {
+    display: flex;
+    align-items: center; /* عکس و متن را در یک راستا قرار می‌دهد */
+    justify-content: space-between; /* فاصله بین عکس و متن را تنظیم می‌کند */
 }
+
+.thumb-post .mr-2 {
+    text-align: right; /* تراز متن به راست */
+    padding-right: 10px; /* ایجاد فاصله از سمت راست */
+    flex: 1; /* متن فضای باقی‌مانده را پر می‌کند */
+}
+
+.thumb-post img {
+    width: 60px; /* عرض عکس ثابت می‌ماند */
+    height: 60px; /* ارتفاع عکس ثابت می‌ماند */
+    border-radius: 14px; /* حفظ شکل گرد عکس */
+    box-shadow: 0 0 10px -3px rgba(0,0,0,.1); /* سایه عکس */
+    padding: 2px; /* فاصله داخلی عکس */
+}
+
 
 .thumb-post h3 {
     font-size: 0.8rem !important;
