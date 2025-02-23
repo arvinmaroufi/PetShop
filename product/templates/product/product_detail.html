@@ -54,7 +54,7 @@
                                                         <path d="M19.2601 7.5H3.92005C3.50005 7.5 3.16005 7.82 3.12005 8.23L2.76005 12.58C2.62005 14.29 3.96005 15.75 5.67005 15.75H16.7901C18.2901 15.75 19.6101 14.52 19.7201 13.02L20.0501 8.35C20.0901 7.89 19.7301 7.5 19.2601 7.5Z"
                                                               fill="#FFAA00"/>
                                                     </svg>
-                                                    <span class="text-center">افزودن به سبد خرید</span>
+                                                    <span class="text-center"><a href="{% url 'cart:add_to_cart' similar_product.id %}">افزودن به سبد خرید</a></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,10 +92,7 @@
                                             class="color-dark">{{ product.short_description }}</p></li>
                                 </ul>
                                 <div class="d-flex align-items-center justify-content-between my-4">
-                                    <button class="btn btn-lightorng btn-rounded mr-1" data-toggle="tooltip" title=""
-                                            data-original-title="Add to cart">
-                                        افزودن به سبد خرید
-                                    </button>
+                                    <a href="{% url 'cart:add_to_cart' product.id %}" class="btn btn-lightorng btn-rounded">افزودن به سبد خرید</a>
                                     <h3 class="color-orange YekanBakhFaNum-Bold fa18">
                                         {{ product.price|format_price }}
                                         <span class="YekanBakhFaNum-Regular fa14">تومان</span>

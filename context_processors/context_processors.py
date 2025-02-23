@@ -17,3 +17,9 @@ def blog_sidebar(request):
             if current_article:
                 latest_articles = [article for article in latest_articles if article.id != current_article.id]
     return {'article_category': article_category, 'latest_articles': latest_articles}
+
+
+def cart_item_count(request):
+    cart = request.session.get('cart', {})
+    total_items = sum(item['quantity'] for item in cart.values())
+    return {'cart_item_count': total_items}

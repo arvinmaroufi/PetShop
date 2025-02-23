@@ -29,7 +29,7 @@
                     {% for product in products %}
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card-body mb-3 text-center">
-                                <a href="page-shop.html">
+                                <a href="{{ product.get_absolute_url }}">
                                     {% if product.image %}
                                         <img class="img-fluid" src="{{ product.image.url }}"
                                              alt="{{ product.title|truncatechars:13 }}">
@@ -40,7 +40,7 @@
                                 </a>
                                 <div>
                                     <h5 class="my-2 YekanBakhFaNum-SemiBold">
-                                        <a class="card-pro" href="page-shop.html">{{ product.title|truncatechars:13 }}</a>
+                                        <a class="card-pro" href="{{ product.get_absolute_url }}">{{ product.title|truncatechars:13 }}</a>
                                     </h5>
                                     <span class="color-orange YekanBakhFaNum-Bold fa18">{{ product.price|format_price }}</span>
                                     <span class="color-orange YekanBakhFaNum-Regular fa14">تومان</span>

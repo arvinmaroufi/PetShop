@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'product',
     'blog',
     'accounts',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'context_processors.context_processors.product_sidebar',
                 'context_processors.context_processors.blog_sidebar',
+                'context_processors.context_processors.cart_item_count',
             ],
         },
     },

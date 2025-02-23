@@ -132,6 +132,28 @@ body {
     border-radius: 30px;
 }
 
+.shoping-cart {
+        position: relative;
+        display: inline-block; /* برای قرار دادن صحیح عناصر */
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px; /* موقعیت عمودی */
+    right: -8px; /* موقعیت افقی */
+    background-color: #FFAA00; /* رنگ پس‌زمینه دایره */
+    color: #F8F8F8; /* رنگ متن */
+    border-radius: 50%; /* ایجاد دایره */
+    width: 20px; /* عرض دایره */
+    height: 20px; /* ارتفاع دایره */
+    display: flex; /* برای قرار دادن متن در مرکز */
+    justify-content: center; /* تراز افقی متن */
+    align-items: center; /* تراز عمودی متن */
+    font-size: 12px; /* اندازه فونت */
+    font-weight: bold; /* متن پررنگ */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* سایه برای زیبایی */
+}
+
 .radius45 {
     border-radius: 45px;
 }
