@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from product.models import Product
 from .models import CartOrder, CartOrderItem
+from django.contrib import messages
+import random
 
 
 def get_cart_item_count(request):
@@ -53,8 +55,47 @@ def update_cart(request, product_id, action):
     return redirect('cart:cart_view')
 
 
-
 @login_required
 def checkout(request):
-    # Implement checkout logic here
-    pass
+    cart = request.session.get('cart', {})
+    if not cart:
+        messages.warning(request, "سبد خرید شما خالی است! لطفاً حداقل یک محصول را اضافه کنید.")
+        return redirect('cart:cart_view')
+    total_price = sum(item['price'] * item['quantity'] for item in cart.values())
+
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        zipcode = request.POST.get('zipcode')
+
+        invoice_no = random.randint(1000000000, 9999999999)
+
+        order = CartOrder.objects.create(
+            user=request.user,
+            price=total_price,
+            is_status=True,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone=phone,
+            address=address,
+            zipcode=zipcode,
+        )
+
+        for product_id, item in cart.items():
+            CartOrderItem.objects.create(
+                order=order,
+                item=Product.objects.get(id=product_id),
+                invoice_no=invoice_no,
+                qty=item['quantity'],
+                price=item['price'],
+                total=item['price'] * item['quantity'],
+            )
+
+        request.session['cart'] = {}
+        return redirect('cart:cart_view')
+
+    return render(request, 'cart/checkout.html', {'total_price': total_price, 'cart': cart})

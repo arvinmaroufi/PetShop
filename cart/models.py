@@ -17,6 +17,13 @@ class CartOrder(models.Model):
     order_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ سفارش")
     product_status = models.CharField(choices=STATUS_CHOICE, max_length=30, default="processing", verbose_name="وضعیت محصول")
 
+    first_name = models.CharField(max_length=50, verbose_name="نام")
+    last_name = models.CharField(max_length=50, verbose_name="نام خانوادگی")
+    email = models.EmailField(max_length=100, verbose_name="ایمیل")
+    phone = models.CharField(max_length=14, verbose_name="تلفن")
+    address = models.TextField(verbose_name="آدرس")
+    zipcode = models.CharField(max_length=10, verbose_name='کد پستی')
+
     class Meta:
         verbose_name = "سفارش"
         verbose_name_plural = "سفارشات"
@@ -28,7 +35,7 @@ class CartOrder(models.Model):
 class CartOrderItem(models.Model):
     order = models.ForeignKey(CartOrder, on_delete=models.CASCADE, verbose_name="سفارش")
     item = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="محصول")
-    invoice_no = models.CharField(max_length=200, verbose_name="شماره فاکتور")
+    invoice_no = models.CharField(max_length=10, verbose_name="شماره فاکتور")
     product_status = models.CharField(choices=STATUS_CHOICE, max_length=30, default="processing", verbose_name="وضعیت محصول")
     qty = models.IntegerField(default=0, verbose_name="تعداد")
     price = models.IntegerField(default=10000, verbose_name="قیمت")
