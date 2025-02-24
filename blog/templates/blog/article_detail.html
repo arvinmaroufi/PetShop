@@ -32,7 +32,7 @@
                             <img src="{{ article.image.url }}" alt="{{ article.title }}"
                                  class="img-fluid mb-4 blogimg radius30"/>
                         {% else %}
-                            <img src="Img/beautiful-pet-1.jpg" alt="{{ article.title }}"
+                            <img src="{% static 'main/img/image_not_available.jpg' %}" alt="{{ article.title }}"
                                  class="img-fluid mb-4 blogimg radius30"/>
                         {% endif %}
                         <div class="op-description d-flex justify-content-between w-100">

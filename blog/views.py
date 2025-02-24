@@ -31,7 +31,7 @@ def article_list(request):
 
 def category_article_list(request, slug):
     category = Category.objects.get(slug=slug)
-    articles = Article.objects.filter(category=category)
+    articles = Article.objects.filter(category=category, status='published')
     page_number = request.GET.get('page')
     paginator = Paginator(articles, 9)
     object_list = paginator.get_page(page_number)

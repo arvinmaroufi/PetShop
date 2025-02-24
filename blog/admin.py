@@ -18,6 +18,7 @@ class CategoryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 class ArticleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     list_display = ['short_title', 'author', 'views', 'article_image', 'get_created_jalali', 'status']
     prepopulated_fields = {'slug': ('title',)}
+    list_editable = ['status']
 
     def short_title(self, obj):
         if len(obj.title) > 20:

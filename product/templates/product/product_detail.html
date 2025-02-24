@@ -86,7 +86,11 @@
                                 <h4 class="box-title">{{ product.title }}</h4>
                                 <hr>
                                 <ul class="list-unstyled">
-                                    <li class="color-gray">موجودی: <span class="color-dark">{{ product.stock_count }} عدد در انبار</span>
+                                    {% if product.stock_count > 0 %}
+                                        <li class="color-gray">موجودی: <span class="color-dark">{{ product.stock_count }} عدد در انبار</span>
+                                    {% else %}
+                                        <li class="color-gray">موجودی: <span class="text-danger">ناموجود</span>
+                                    {% endif %}
                                     </li>
                                     <li class="color-gray">توضیح کوتاه از محصول: <p
                                             class="color-dark">{{ product.short_description }}</p></li>

@@ -134,24 +134,24 @@ body {
 
 .shoping-cart {
         position: relative;
-        display: inline-block; /* برای قرار دادن صحیح عناصر */
+        display: inline-block;
 }
 
 .cart-count {
     position: absolute;
-    top: -8px; /* موقعیت عمودی */
-    right: -8px; /* موقعیت افقی */
-    background-color: #FFAA00; /* رنگ پس‌زمینه دایره */
-    color: #F8F8F8; /* رنگ متن */
-    border-radius: 50%; /* ایجاد دایره */
-    width: 20px; /* عرض دایره */
-    height: 20px; /* ارتفاع دایره */
-    display: flex; /* برای قرار دادن متن در مرکز */
-    justify-content: center; /* تراز افقی متن */
-    align-items: center; /* تراز عمودی متن */
-    font-size: 12px; /* اندازه فونت */
-    font-weight: bold; /* متن پررنگ */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* سایه برای زیبایی */
+    top: -8px;
+    right: -8px;
+    background-color: #FFAA00;
+    color: #F8F8F8;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .radius45 {
@@ -1017,22 +1017,22 @@ color:#FFAA00 !important
 
 .thumb-post .d-flex {
     display: flex;
-    align-items: center; /* عکس و متن را در یک راستا قرار می‌دهد */
-    justify-content: space-between; /* فاصله بین عکس و متن را تنظیم می‌کند */
+    align-items: center;
+    justify-content: space-between;
 }
 
 .thumb-post .mr-2 {
-    text-align: right; /* تراز متن به راست */
-    padding-right: 10px; /* ایجاد فاصله از سمت راست */
-    flex: 1; /* متن فضای باقی‌مانده را پر می‌کند */
+    text-align: right;
+    padding-right: 10px;
+    flex: 1;
 }
 
 .thumb-post img {
-    width: 60px; /* عرض عکس ثابت می‌ماند */
-    height: 60px; /* ارتفاع عکس ثابت می‌ماند */
-    border-radius: 14px; /* حفظ شکل گرد عکس */
-    box-shadow: 0 0 10px -3px rgba(0,0,0,.1); /* سایه عکس */
-    padding: 2px; /* فاصله داخلی عکس */
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    box-shadow: 0 0 10px -3px rgba(0,0,0,.1);
+    padding: 2px;
 }
 
 
