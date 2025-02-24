@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.forms import ValidationError
 from django.core.validators import EmailValidator
-from django.contrib.auth.password_validation import validate_password
 
 
 class UserRegistrationForm(forms.ModelForm):

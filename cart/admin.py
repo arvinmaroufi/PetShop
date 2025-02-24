@@ -6,7 +6,7 @@ from jalali_date.admin import ModelAdminJalaliMixin
 
 @admin.register(models.CartOrder)
 class CartOrderAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
-    list_display = ['user', 'price', 'get_order_date_jalali', 'product_status', 'is_status']
+    list_display = ['user', 'price', 'order_id', 'email', 'address', 'zipcode', 'get_order_date_jalali', 'product_status', 'is_status']
     list_editable = ['product_status']
 
     @admin.display(description='تاریخ سفارش', ordering='order_date')

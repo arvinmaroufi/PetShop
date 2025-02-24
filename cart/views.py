@@ -37,15 +37,23 @@ def add_to_cart(request, product_id):
 def cart_view(request):
     cart = get_cart(request)
     total_price = sum(item['price'] * item['quantity'] for item in cart.values())
-    return render(request, 'cart/cart.html', {'cart': cart, 'total_price': total_price})
+    total_items = get_cart_item_count(request)
+
+    for product_id, item in cart.items():
+        product = Product.objects.get(id=product_id)
+        item['stock_count'] = product.stock_count
+
+    return render(request, 'cart/cart.html', {'cart': cart, 'total_price': total_price, 'total_items': total_items})
 
 
 def update_cart(request, product_id, action):
     cart = get_cart(request)
+    product = Product.objects.get(id=product_id)
 
     if str(product_id) in cart:
         if action == 'increase':
-            cart[str(product_id)]['quantity'] += 1
+            if cart[str(product_id)]['quantity'] < product.stock_count:
+                cart[str(product_id)]['quantity'] += 1
         elif action == 'decrease':
             cart[str(product_id)]['quantity'] -= 1
             if cart[str(product_id)]['quantity'] <= 0:
