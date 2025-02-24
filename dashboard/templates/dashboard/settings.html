@@ -1,0 +1,67 @@
+{% extends 'dashboard.html' %}
+{% block title %}تنظیمات{% endblock %}
+
+{% block context %}
+    <div id="content">
+        <!-- نوار بالایی -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1 class="h2">تنظیمات</h1>
+            </div>
+        </nav>
+
+        <!-- فرم تنظیمات -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">تنظیمات امنیتی</h5>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for error in form.non_field_errors %}
+                                {% if error %}
+                                    <p class="alert alert-danger mb-2">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if form.old_password.errors %}
+                                <div class="alert alert-danger mb-2">
+                                    {% for error in form.old_password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-group mb-3">
+                                <label for="old_password">رمز عبور فعلی</label>
+                                <input type="password" class="form-control" id="old_password" name="old_password" required>
+                            </div>
+                            {% if form.new_password.errors %}
+                                <div class="alert alert-danger mb-2">
+                                    {% for error in form.new_password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-group mb-3">
+                                <label for="new_password">رمز عبور جدید</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                            </div>
+                            {% if form.confirm_new_password.errors %}
+                                <div class="alert alert-danger mb-2">
+                                    {% for error in form.confirm_new_password.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="form-group mb-3">
+                                <label for="confirm_new_password">تکرار رمز عبور جدید</label>
+                                <input type="password" class="form-control" id="confirm_new_password" name="confirm_new_password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

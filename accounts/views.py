@@ -32,7 +32,7 @@ def user_login(request):
         if form.is_valid():
             user = User.objects.get(username=form.cleaned_data.get('username'))
             login(request, user)
-            return redirect('home:home')
+            return redirect('dashboard:dashboard')
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})

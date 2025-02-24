@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from product.models import Product
+from shortuuid.django_fields import ShortUUIDField
 
 
 STATUS_CHOICE = (
@@ -16,7 +17,7 @@ class CartOrder(models.Model):
     is_status = models.BooleanField(default=False, verbose_name="آیا پرداخت شده یا نه؟")
     order_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ سفارش")
     product_status = models.CharField(choices=STATUS_CHOICE, max_length=30, default="processing", verbose_name="وضعیت محصول")
-
+    order_id = ShortUUIDField(unique=True, length=10, alphabet="1234567890", verbose_name="شناسه سفارش")
     first_name = models.CharField(max_length=50, verbose_name="نام")
     last_name = models.CharField(max_length=50, verbose_name="نام خانوادگی")
     email = models.EmailField(max_length=100, verbose_name="ایمیل")

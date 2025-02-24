@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'main/img/logo.svg' %}">
+    <!-- Css Link -->
+    <link href="{% static 'dashboard/css/dashboard.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- منوی سمت چپ -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <a href="{% url 'home:home' %}" class="current py-2">
+                    <img style="height: 100px;margin-right: 25px" src="{% static 'main/img/logo.svg' %}"/>
+                </a>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <a href="{% url 'dashboard:dashboard' %}"><i class="fas fa-home"></i> صفحه اصلی</a>
+                </li>
+                <li  class="{% if request.resolver_match.url_name == 'orders' %}active{% endif %}">
+                    <a href="{% url 'dashboard:orders' %}"><i class="fas fa-shopping-cart"></i> سفارشات من</a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+                    <a href="{% url 'dashboard:profile' request.user.profile.user.username %}"><i class="fas fa-user"></i> پروفایل من</a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'setting' %}active{% endif %}">
+                    <a href="{% url 'dashboard:setting' %}"><i class="fas fa-cog"></i> تنظیمات</a>
+                </li>
+                <li>
+                    <a href="{% url 'account:logout' %}"><i class="fas fa-power-off"></i> خروج</a>
+                </li>
+            </ul>
+        </nav>
+
+        {% block context %}
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+</body>
+</html>

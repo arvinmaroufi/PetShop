@@ -1,0 +1,68 @@
+{% extends 'dashboard.html' %}
+{% block title %}جزئیات سفارش{% endblock %}
+{% load custom_filters %}
+{% load jalali_tags %}
+
+{% block context %}
+    <div id="content" class="container mt-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1 class="h2">فاکتور سفارش</h1>
+            </div>
+        </nav>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">شناسه سفارش: <span class="text-primary">{{ order.order_id }}</span></h5>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>تاریخ سفارش:</strong> {{ order.order_date|to_jalali:'%H:%M:%S - %Y/%m/%d' }}</p>
+                        <p><strong>نام:</strong> {{ order.first_name }} {{ order.last_name }}</p>
+                        <p><strong>ایمیل:</strong> {{ order.email }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>تلفن:</strong> {{ order.phone }}</p>
+                        <p><strong>آدرس:</strong> {{ order.address }}</p>
+                        <p><strong>کد پستی:</strong> {{ order.zipcode }}</p>
+                    </div>
+                </div>
+
+                <h5 class="mt-4">آیتم‌های سفارش:</h5>
+                <table class="table table-striped table-bordered mt-2">
+                    <thead class="table-dark">
+                    <tr>
+                        <th>محصول</th>
+                        <th>تعداد</th>
+                        <th>قیمت</th>
+                        <th>جمع کل</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in order_items %}
+                        <tr>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.qty }}</td>
+                            <td>{{ item.price|format_price }} تومان</td>
+                            <td>{{ item.total|format_price }} تومان</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <h5 class="mt-4">مجموع کل: <span class="text-danger">{{ order.price|format_price }}</span> تومان</h5>
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'dashboard:dashboard' %}" class="btn btn-primary">بازگشت به داشبورد</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+

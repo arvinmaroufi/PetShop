@@ -1,0 +1,155 @@
+/* Existing styles... */
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        position: relative;
+    }
+
+    #content {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .navbar {
+        margin-bottom: 20px;
+    }
+
+    .stats .card {
+        margin-bottom: 15px;
+    }
+
+    .product-card {
+        margin-bottom: 15px;
+    }
+}
+
+body {
+    font-family: 'YekanBakhFaNum-Regular', sans-serif;
+    background: #f8f9fa;
+    direction: rtl;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    background: #292D32;
+    color: #fff;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #1f2226;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover {
+    background: #FFAA00;
+    color: #fff;
+}
+
+#sidebar ul li.active > a {
+    background: #FFAA00;
+    color: #fff;
+}
+
+#content {
+    margin-right: 250px;
+    width: calc(100% - 250px);
+    padding: 20px;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.product-card {
+    margin-bottom: 20px;
+}
+
+.product-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    flex: 0 0 150px; /* عرض ثابت برای تصویر پروفایل */
+    height: 150px; /* ارتفاع ثابت برای تصویر پروفایل */
+    overflow: hidden; /* مخفی کردن قسمت‌های اضافی تصویر */
+    border-radius: 50%; /* گرد کردن حاشیه */
+    border: 2px solid #FFAA00; /* حاشیه زیبا */
+    display: flex; /* استفاده از flex برای مرکز کردن تصویر */
+    justify-content: center; /* مرکز کردن افقی */
+    align-items: center; /* مرکز کردن عمودی */
+}
+
+.profile-image img {
+    width: 100%; /* عرض 100% */
+    height: 100%; /* ارتفاع 100% */
+    object-fit: cover; /* برش تصویر به صورت مناسب */
+}
+
+.profile-info {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h6 {
+    margin: 10px 0;
+    color: #333; /* رنگ متن */
+}
+
+

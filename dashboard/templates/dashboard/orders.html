@@ -1,0 +1,61 @@
+{% extends 'dashboard.html' %}
+{% block title %}سفارشات من{% endblock %}
+{% load custom_filters %}
+{% load jalali_tags %}
+
+{% block context %}
+    <div id="content">
+        <!-- نوار بالایی -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1 class="h2">سفارشات من</h1>
+            </div>
+        </nav>
+
+        <!-- جدول سفارشات -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">لیست سفارشات</h5>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>شناسه سفارش</th>
+                                <th>تاریخ</th>
+                                <th>مبلغ</th>
+                                <th>وضعیت</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{ order.order_id }}</td>
+                                    <td>{{ order.order_date|to_jalali:'%Y/%m/%d' }}</td>
+                                    <td>{{ order.price|format_price }} تومان</td>
+                                    {% if order.product_status == 'processing' %}
+                                        <td style="color: red;">{{ order.get_product_status_display }}</td>
+                                    {% elif order.product_status == 'shipped' %}
+                                        <td style="color: #FFAA00;">{{ order.get_product_status_display }}</td>
+                                    {% else %}
+                                        <td style="color: green;">{{ order.get_product_status_display }}</td>
+                                    {% endif %}
+                                    <td>
+                                        <a href="{% url 'dashboard:order_detail' order.order_id %}"
+                                           class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> جزئیات</a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5">سفارشی وجود ندارد.</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

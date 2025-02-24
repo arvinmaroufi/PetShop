@@ -1,0 +1,124 @@
+{% extends 'dashboard.html' %}
+{% block title %}پنل کاربری{% endblock %}
+{% load static %}
+{% load custom_filters %}
+{% load jalali_tags %}
+
+{% block context %}
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1 class="h2"><b style="color: #FFAA00;">{{ request.user.first_name }} {{ request.user.last_name }}</b>
+                    عزیز، به پنل کاربری خوش آمدید</h1>
+            </div>
+        </nav>
+
+        <!-- آمار کلی -->
+        <div class="row stats">
+            <div class="col-md-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h5 class="card-title">سفارشات فعال</h5>
+                        <p class="card-text">{{ cart_item_count|default:0 }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <i class="fas fa-check-circle"></i>
+                        <h5 class="card-title">سفارشات تکمیل شده</h5>
+                        <p class="card-text">{{ completed_orders.count }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <i class="fas fa-comments"></i>
+                        <h5 class="card-title">نظرات ارسال شده</h5>
+                        <p class="card-text">{{ total_comments_count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">پروفایل</h5>
+                        <div class="profile-container">
+                            <div class="profile-image">
+                                {% if profile.image %}
+                                    <img src="{{ profile.image.url }}" alt="{{ profile.user.username }}">
+                                {% else %}
+                                    <img src="{% static 'dashboard/img/default_profile_image.png' %}"
+                                         alt="{{ profile.user.username }}">
+                                {% endif %}
+                            </div>
+                            <div class="profile-info">
+                                <h6>کاربر: {{ profile.user.username }}</h6>
+                                <h6>نام: {{ profile.first_name }}</h6>
+                                <h6>نام خانوادگی: {{ profile.last_name }}</h6>
+                                <h6>ایمیل: {{ profile.email }}</h6>
+                                <h6>درباره من: {{ profile.about_me }}</h6>
+                                <h6>شماره تلفن: {{ profile.phone }}</h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- آخرین سفارشات -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">آخرین سفارشات</h5>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>شناسه سفارش</th>
+                                <th>تاریخ</th>
+                                <th>مبلغ</th>
+                                <th>وضعیت</th>
+                                <th>عملیات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order in recent_orders %}
+                                <tr>
+                                    <td>{{ order.order_id }}</td>
+                                    <td>{{ order.order_date|to_jalali:'%Y/%m/%d' }}</td>
+                                    <td>{{ order.price|format_price }} تومان</td>
+                                    {% if order.product_status == 'processing' %}
+                                        <td style="color: red;">{{ order.get_product_status_display }}</td>
+                                    {% elif order.product_status == 'shipped' %}
+                                        <td style="color: #FFAA00;">{{ order.get_product_status_display }}</td>
+                                    {% else %}
+                                        <td style="color: green;">{{ order.get_product_status_display }}</td>
+                                    {% endif %}
+
+                                    <td>
+                                        <a href="{% url 'dashboard:order_detail' order.order_id %}"
+                                           class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> جزئیات</a>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5">سفارشی وجود ندارد.</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
