@@ -137,7 +137,7 @@
                                     </button>
                                 </form>
                             {% else %}
-                                <a class="btn btn-danger" href="#login">برای ارسال نظر ابتدا باید وارد شوید</a>
+                                <a class="btn btn-danger" href="{% url 'account:login' %}">برای ارسال نظر ابتدا باید وارد شوید</a>
                             {% endif %}
                         </div>
                         <div class="comments-list">
@@ -148,7 +148,11 @@
                                              alt="User Avatar" class="rounded-circle"
                                              width="50" height="50">
                                         <div class="ml-3">
-                                            <h5 class="mb-1 mr-1">{{ comment.author.username }}</h5>
+                                            {% if comment.author.profile.first_name and comment.author.profile.last_name %}
+                                                <h5 class="mb-1 mr-1">{{ comment.author.profile.first_name }} {{ comment.author.profile.last_name }}</h5>
+                                            {% else %}
+                                                <h5 class="mb-1 mr-1">{{ comment.author.username }}</h5>
+                                            {% endif %}
                                             <p class="mb-1 mr-1">{{ comment.body }}</p>
                                             <small class="text-muted">{{ comment.created_at|days_since }}</small>
                                         </div>
